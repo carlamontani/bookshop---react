@@ -1,0 +1,15 @@
+a {
+    text-decoration: none;
+}
+
+.some-style{
+    height: 300px;
+    max-width: 200px;
+    overflow: hidden;
+    padding: 20px;
+}
+
+.some-style img{
+    width: 100%;
+    height: auto;
+}
