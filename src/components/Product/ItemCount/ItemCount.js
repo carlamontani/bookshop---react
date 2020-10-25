@@ -7,6 +7,8 @@ import { Typography } from '@material-ui/core';
 import Input from '@material-ui/core/Input';
 
 import { makeStyles } from '@material-ui/core/styles';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -27,21 +29,26 @@ function ItemCount(){
 
     const [cartItems, setCartItems] = useContext(CartItemsContext);
 
+    //const [cartItemsFinal, setCartItemsFinal] = useContext(CartItemsContext);
+
 
     useEffect(() => {
         console.log(cartItems)
     }, [cartItems])
+
 
     function increase_quantity() {
         if (value < 20 && value > 0) {
             setValueError(false);
             setCount(parseInt(value)+1); 
             setCartItems( parseInt(value)+1);
+            //setCartItemsFinal( parseInt(value)+1);
         }   else if (value > 19) {
             setValueError(true);
         }   else { 
             setCount((value)+1); 
             setCartItems((value)+1); 
+            //setCartItemsFinal((value)+1); 
             setValueError(false);
         }
     }
@@ -51,12 +58,14 @@ function ItemCount(){
             setValueError(false);
             setCount((value)-1);
             setCartItems((value)-1);
+            //setCartItemsFinal((value)-1);
         } else if (value === 0){
             setCount(value);
             setValueError(true);
         } else {
             setCount((value)-1);
             setCartItems((value)-1);
+            //setCartItemsFinal((value)-1);
             setValueError(true);
         }
     }
@@ -79,7 +88,9 @@ function ItemCount(){
 
     return(
         <div className={classes.root} >
-            <Button color="primary" variant="outlined" size="small" onClick={() => decrease_quantity()}>-</Button>
+            <Button color="secondary" size="small" onClick={() => decrease_quantity()}>
+                <RemoveIcon/>
+            </Button>
 
             <Input 
                 type="text"
@@ -89,8 +100,10 @@ function ItemCount(){
                 value={value}
                 param={valueError}
             />
-            <Button color="primary" variant="outlined" size="small" onClick={() => increase_quantity()}>+</Button>
-            <div> {valueError && 
+            <Button color="secondary" size="small" onClick={() => increase_quantity()}>
+                <AddIcon/>
+            </Button>
+            <div class="container-cantidad2"> {valueError && 
                     <Typography variant="caption" display="block" gutterBottom className='error-message'>
                         El valor debe ser de 1 a 20 
                     </Typography>

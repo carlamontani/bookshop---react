@@ -1,14 +1,3 @@
-/*import React from 'react';
-
-function ItemList(props) {
-    console.log(props.product.product.title)
-    return(
-        <p className="Card-Title">{props.product.product.title}</p>
-    )
-}
-
-export default ItemList*/
-
 import React from 'react';
 //import ItemCount from '../ItemCount/ItemCount';
 import './ItemList.css';
@@ -20,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+
 //import { sizing } from '@material-ui/system';
 //import Box from '@material-ui/core/Box';
 
@@ -53,8 +42,9 @@ const useStyles = makeStyles((theme) => ({
       transform: 'scale(0.8)',
     },
     title: {
-      fontSize: 16,
-      fontWeight: 500,
+      fontSize: 14,
+      fontWeight: 200,
+      letterSpacing: 0.5,
     },
     pos: {
       marginBottom: 12,
@@ -72,27 +62,27 @@ function ItemList(props) {
             
                 {props ?
                     <Grid item sm={4}>
-                        <Card className={classes.root}>
-                            <CardContent>
-                                <div key={props.product.product.id} id={props.product.product.id}>
+                        <Card className={classes.root} id="transparent" variant="outlined">
+                            <CardContent container>
+                                <div key={props.product.product.id} id={props.product.product.id} className = "centerflex">
                                     <div className='some-style'>
                                         <img src={props.product.product.image} alt={props.product.product.title} />
                                     </div>
                                         
-                                    <Typography className={classes.title} gutterBottom>
-                                            {props.product.product.title}
-                                        </Typography>
+                                    <Typography className={classes.title} align="center" gutterBottom>
+                                        {props.product.product.title}
+                                    </Typography>
                                         
-                                        <Typography variant="h6">
-                                            {props.product.product.price}
-                                        </Typography>
+                                    <Typography className={classes.title} align="center" gutterBottom>
+                                        ${props.product.product.price}
+                                    </Typography>
                                         
                                         
-                                        <NavLink to= {`/product/${props.product.product.id}`}>
-                                            <Button color="primary" variant="contained"> 
-                                                Agregar <ShoppingCartIcon fontSize="small" />
-                                            </Button>
-                                        </NavLink>
+                                    <NavLink to= {`/product/${props.product.product.id}`}>
+                                        <Button color="secondary" alignItems="center"> 
+                                            Ver Más
+                                        </Button>
+                                    </NavLink>
                                 </div>
                             </CardContent>
                         </Card>

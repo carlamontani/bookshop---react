@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getFirestore } from './firebase';
+import './App.css';
 
 //COMPONENTES
 import NavBar from './components/NavBar/NavBar';
@@ -18,10 +19,13 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 //CONTEXT
 import { CartProvider } from './context/cartContext';
 import { CartItemsProvider } from './context/cartItemsContext';
+import { UserProvider } from './context/userContext';
+import { CartPriceProvider } from './context/cartPriceContext';
+import { CartTotalProvider } from './context/cartTotalContext';
 
 //MATERIAL
-//import Typography from '@material-ui/core/Typography';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import { MuiThemeProvider, createMuiTheme, ThemeProvider, withTheme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -38,15 +42,18 @@ const theme = createMuiTheme({
       light: '#b26500',
       main: '#c6ff00',
       dark: '#ffa733',
-      contrastText: '#000',
+      contrastText: '#ff1744',
     },
+    text:{
+      primary: "#FFFFFF"
+    }
   },
   typography: {
     "fontFamily": `"Montserrat", "Helvetica", "Arial", sans-serif`,
     "fontSize": 14,
     "fontWeightLight": 200,
     "fontWeightRegular": 400,
-    "fontWeightMedium": 600
+    "fontWeightMedium": 600,
    },
 });
 
@@ -106,59 +113,68 @@ const App = () => {
 
     return (
       <BrowserRouter>
-        <MuiThemeProvider theme={theme}>  
-          <NavBar/>
-          <Switch>
-            <CartItemsProvider>
+        <ThemeProvider theme={theme}>  
+          <CartItemsProvider>
               <CartProvider>
-                <Route exact path="/">
-                  <div style={{ padding: 20 }} > 
-                    <Grid
-                      container
-                      spacing={0}
-                      direction="row"
-                      alignItems="center"
-                      justify="center"
-                      style={{ minHeight: '50vh' }}
-                      >
-                      {
-                      items.map(product => (
-                        <Home key={product.id} product={product}/>
-                      ))
-                      }            
-                    </Grid>
-                  </div>
-                </Route>
+                <UserProvider> 
+                  <CartPriceProvider>
+                    <CartTotalProvider>
+                      <NavBar/>
+                      <Switch>            
+                      <Route exact path="/">
+                        <div style={{ padding: 20 }} > 
+                        <Typography variant="h4" color="secondary" align="center" >
+                            Novedades
+                        </Typography>
+                          <Grid
+                            container
+                            spacing={0}
+                            direction="row"
+                            alignItems="center"
+                            justify="center"
+                            style={{ minHeight: '50vh' }}
+                            >
+                            {
+                            items.map(product => (
+                              <Home key={product.id} product={product}/>
+                            ))
+                            }            
+                          </Grid>
+                        </div>
+                      </Route>
 
-                <Route path="/account/login">
-                  <Login/>
-                </Route>
+                      <Route path="/account/login">
+                        <Login/>
+                      </Route>
 
-                <Route path="/account/newuser">
-                  <NewUser/>
-                </Route>
+                      <Route path="/account/newuser">
+                        <NewUser/>
+                      </Route>
 
-                <Route path='/product/:id'>
-                  <Product products={items} />
-                </Route>
-                
-                <Route exact path='/cart'>
-                  <Cart/>
-                </Route>
+                      <Route path='/product/:id'>
+                        <Product products={items} />
+                      </Route>
+                      
+                      <Route exact path='/cart'>
+                        <Cart/>
+                      </Route>
 
-                <Route exact path='/fiction'>
-                  <Fiction/>
-                </Route>
+                      <Route exact path='/fiction'>
+                        <Fiction/>
+                      </Route>
 
-                <Route exact path='/nonfiction'>
-                  <NonFiction/>
-                </Route>
-
+                      <Route exact path='/nonfiction'>
+                        <NonFiction/>
+                      </Route>
+                    
+                      </Switch>
+                    </CartTotalProvider>
+                  </CartPriceProvider>
+                </UserProvider>
               </CartProvider>
             </CartItemsProvider>
-          </Switch>
           <Footer/>   
-        </MuiThemeProvider>    
+        </ThemeProvider>    
       </BrowserRouter>
     );
   }

@@ -13,3 +13,14 @@ a {
     width: 100%;
     height: auto;
 }
+
+#transparent{
+    background-color: transparent;
+    border: none;
+}
+
+.centerflex{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}

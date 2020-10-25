@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { NavLink } from 'react-router-dom'
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -11,11 +10,17 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import Badge from '@material-ui/core/Badge';
+
+import NotificationsIcon from '@material-ui/icons/Notifications';
+
 
 import LocalMallIcon from '@material-ui/icons/LocalMall';
 import PersonIcon from '@material-ui/icons/Person';
 import SearchIcon from '@material-ui/icons/Search';
 
+import { CartItemsContext } from '../../context/cartItemsContext';
+import { CartContext } from '../../context/cartContext';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -34,6 +39,11 @@ export default function NavBar() {
     const classes = useStyles();
   
     const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const [cartItems, setCartItems] = useContext(CartItemsContext);
+
+    const [cart, setCart] = useContext(CartContext);
+
   
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
@@ -67,25 +77,31 @@ export default function NavBar() {
                           No Ficción
                         </NavLink>
                       </MenuItem>
-                      <MenuItem onClick={handleClose}>Free</MenuItem>
+                      
                       </Menu>
                   </IconButton>
 
-                  <Typography variant="h3" className={classes.title}>
+                  <Typography variant="h3" className={classes.title} id="title">
                     <NavLink to={`/`}>
                       Lorem Librum
                     </NavLink>
                   </Typography>
-                  
-                  <SearchIcon className={classes.menuButton} ></SearchIcon>
-                  <NavLink to={`/account/login`}>
-                    <PersonIcon className={classes.menuButton} >
-                    </PersonIcon>
-                  </NavLink>
-                  <NavLink to={`/cart`}>
 
-                    <LocalMallIcon className={classes.menuButton} ></LocalMallIcon>
+                  <NavLink to={`/cart`}>
+                    <IconButton className={classes.menuButton} aria-label="show new notifications" color="inherit">
+                      { (cart.length > 0 ) ?
+                          <Badge color="primary" variant="dot">
+                            <LocalMallIcon />
+                          </Badge>
+                        :
+                        
+                        <LocalMallIcon />
+                        
+                      }
+                      
+                    </IconButton>
                   </NavLink>
+
                 </Toolbar>
             </AppBar>
         </div>
@@ -95,7 +111,17 @@ export default function NavBar() {
 
 //free
 /*
+<MenuItem onClick={handleClose}>Free</MenuItem>
 <Button color="primary" className={classes.menuButton} >
                     FREE
                   </Button>
+
+                  
+                  
+                  <SearchIcon className={classes.menuButton} ></SearchIcon>
+
+                  <NavLink to={`/account/login`}>
+                    <PersonIcon className={classes.menuButton} >
+                    </PersonIcon>
+                  </NavLink>
 */

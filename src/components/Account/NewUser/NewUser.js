@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -6,6 +6,8 @@ import { Typography } from '@material-ui/core';
 
 import InputNU from './InputNU/InputNU';
 
+//context
+import { userContext } from '../../../context/userContext';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -22,45 +24,39 @@ export default function Login() {
   const classes = useStyles();
 
   const [newName, setNewName ] = useState(''); 
-  const [newId, setNewId ] = useState(''); 
+  const [newEmail, setNewEmail ] = useState(''); 
+  const [newPhone, setNewPhone ] = useState(''); 
 
+  const [user, setUser] = useContext(userContext);
 
+  console.log(user)
   function handleChange(name, value){
-    if (name === 'newId'){
-      setNewId(value)
-    } else {
+    if (name === 'newName'){
       setNewName(value)
+    } else if (name === 'newPhone'){
+      setNewPhone(value)
+    } else {
+      setNewEmail(value)
     }
-  }
 
-  function handleSubmit(){
-    let newPlayer = { newName, newId }
-    console.log(newPlayer)
+    let newPlayer = { newName, newEmail, newPhone }
     let savePlayer = JSON.stringify(newPlayer);
     localStorage.setItem('player', savePlayer )
   }
 
+  
+
   return (
     <form className={classes.root} noValidate autoComplete="off">
-        <Typography variant="h5">
-            Crear una cuenta
+        <Typography variant="h5" color="secondary" >
+            Formulario de Compra
         </Typography>
-
-        <InputNU 
-        attribute= {{
-            id: 'newName',
-            name: 'newName',
-            label: 'Dirección de Email',
-            type: 'text'
-        }}
-            handleChange={handleChange}
-        />
         
         <InputNU 
         attribute= {{
             id: 'newName',
             name: 'newName',
-            label: 'Nombre',
+            label: 'Nombre Completo',
             type: 'text'
         }}
             handleChange={handleChange}
@@ -68,14 +64,35 @@ export default function Login() {
 
         <InputNU 
         attribute= {{
-            id: 'newName',
-            name: 'newName',
-            label: 'Apellido',
-            type: 'text'
+            id: 'newPhone',
+            name: 'newPhone',
+            label: 'Teléfono de Contacto',
+            type: 'number'
         }}
             handleChange={handleChange}
         />
 
+        <InputNU 
+        attribute= {{
+            id: 'newEmail',
+            name: 'newEmail',
+            label: 'Dirección de Email',
+            type: 'text'
+        }}
+            handleChange={handleChange}
+        />
+    </form>
+  );
+}
+
+/*
+
+<Button color="primary" variant="contained" onClick = { handleSubmit } >
+            Crear cuenta
+        </Button>
+
+
+        
         <InputNU 
         attribute= {{
             id: 'newId',
@@ -86,10 +103,14 @@ export default function Login() {
             handleChange={handleChange}
         />
 
-        <Button color="primary" variant="contained" onClick = { handleSubmit } >
-            Crear cuenta
-        </Button>
-        
-    </form>
-  );
-}
+
+        function handleSubmit(){
+    let newPlayer = { newName, newEmail, newPhone }
+    setUser(newPlayer)
+    console.log(newPlayer)
+    let savePlayer = JSON.stringify(newPlayer);
+    localStorage.setItem('player', savePlayer )
+
+    onClick = { handleSubmit }
+  }
+*/

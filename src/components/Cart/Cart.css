@@ -1,0 +1,8 @@
+.text-color{
+    color: white;
+}
+.test-label {
+    color: white !important;
+    font-size: 12px !important;
+    font-weight: 300 !important;
+}

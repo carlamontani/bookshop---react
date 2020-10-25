@@ -1,10 +1,14 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import  { useParams } from 'react-router-dom';
 import { withRouter } from "react-router";
 import ItemCount from './ItemCount/ItemCount';
 
+import './Product.css';
+
 import { CartContext } from '../../context/cartContext';
 import { CartItemsContext } from '../../context/cartItemsContext';
+import { CartPriceContext } from '../../context/cartPriceContext';
+import { CartTotalContext } from '../../context/cartTotalContext';
 
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -12,6 +16,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 const useStyles = makeStyles({
     root: {
@@ -42,28 +47,67 @@ function Product ({products}) {
 
     const [cartItems, setCartItems] = useContext(CartItemsContext);
 
+    //const [cartItemsFinal, setCartItemsFinal] = useContext(CartItemsContext);
+
+    const [price, setPrice] = useContext(CartPriceContext);
+
+    const [totalPrice, setTotalPrice] = useContext(CartTotalContext);
+
+    //const [totalPrice, setTotalPrice] = useState('');
+
     console.log(cartItems)
+    //console.log(cartItemsFinal)
     console.log(cart)
+    console.log(price)
+    console.log(totalPrice)
 
     const addToCart = () => {
-
         products.map(product =>{
-            console.log(cartItems) 
-            if(id===product.id) {
-                console.log(cartItems) 
-                console.log(product) 
-                //for (var i = 0; i < cartItems.length; i++) {
-                    const selectedProduct = product;
-                    console.log(selectedProduct);
-                    setCart(currentCart => [...currentCart, selectedProduct])
-                //}
-            }
+            console.log(cartItems)
+            
+                if(id===product.id) {
+                    console.log(cartItems) 
+                    product.qty = cartItems;
+                    console.log(product) 
+
+                    //for (var i = 0; i < cartItems.length; i++) {
+                        const selectedProduct = product;
+                        console.log(selectedProduct);
+                        setCart(currentCart => [...currentCart, selectedProduct])
+                        
+                        const selectedPrice = parseFloat(product.price);
+                        let qtyPrice = (selectedPrice * cartItems);
+                        setPrice(currentPrice => [...currentPrice, qtyPrice])
+                        
+                        //setCartItemsFinal([4])
+                        //let savePlayer2 = JSON.stringify([selectedPrice, cartItemsFinal]);
+                        //localStorage.setItem(selectedProduct.id, savePlayer2 )
+
+                        
+                        setCartItems(1)
+    
+                    //}
+
+                    
+                    document.querySelector(".container-cantidad").innerHTML = `
+                        <Typography variant="caption" display="block" gutterBottom>
+                            Agregaste ${cartItems} productos
+                        </Typography>
+                    `
+                }
+            
         })
+
     }
 
     useEffect(() => {
-        console.log(cart)
+    }, [price])
+
+    useEffect(() => {
     }, [cart])
+
+    useEffect(() => {
+    }, [totalPrice])
 
     return(
         <>
@@ -82,22 +126,55 @@ function Product ({products}) {
                             console.log(product)
                             if(id===product.id) {
                                 return(
-                                    <Card>
-                                        <CardContent>
-                                            <img src={product.image} alt={product.title} />
-                                            <Typography variant="h5">
-                                                {product.title}
-                                            </Typography>
-                                            <Typography variant="h6">
-                                                {product.price}
-                                            </Typography>
-                                            <p>Agregaste {cartItems} productos</p>
-                                            <ItemCount />                              
-                                            <Button color="primary" variant="contained" onClick = {addToCart}> 
-                                                Agregar
-                                            </Button>
-                                        </CardContent>
-                                    </Card>
+                                    <div class="productcont">
+                                        <Typography variant="caption">
+                                            home / {product.categoryId} 
+                                        </Typography>
+                                        <div class="productcolumns">
+                                
+                                            <div class="productimg"> 
+                                                <div class="img-container">
+                                                    <img src={product.image} alt={product.title} />
+                                                </div>                                               
+                                        
+                                            </div>
+                                            <Card id="transparent" variant="outlined" class="productcard">
+                                                <CardContent>
+                                                    <Typography variant="h5" color="secondary" gutterBottom>
+                                                        {product.title}
+                                                    </Typography>
+                                                    <Typography variant="body2" gutterBottom>
+                                                        {product.author}
+                                                    </Typography>
+                                                    <Typography variant="subtitle2" gutterBottom>
+                                                        ${product.price}
+                                                    </Typography>
+
+                                                    <ItemCount /> 
+                                                    <br/>
+                                                                                
+                                                    <Button color="secondary" variant="contained" onClick = {addToCart}> 
+                                                        Agregar <ShoppingCartIcon fontSize="small" />
+                                                    </Button>
+
+                                                    <br/><br/>
+                                                    <div class="container-cantidad"></div>
+                                                    <br/>
+                                                    <br/>
+                                                    <Typography variant="subtitle2" gutterBottom>
+                                                        Descripción:
+                                                    </Typography>
+                                                    <Typography variant="body2" gutterBottom>
+                                                        {product.description}
+                                                    </Typography>
+                                                    <br/>
+                                                    <Typography variant="body2" gutterBottom>
+                                                        ISBN: {product.isbn}
+                                                    </Typography>
+                                                </CardContent>
+                                            </Card>
+                                        </div>
+                                    </div>
                                 )                            
                             }}
                         )
@@ -111,3 +188,33 @@ function Product ({products}) {
 }
 
 export default withRouter(Product);
+
+/*
+
+        if (price.length > 1) {
+            var sum = price.reduce(function(a, b){
+                return a + b;
+            });
+            console.log(sum);
+            setTotalPrice(sum)
+        } else {
+            setTotalPrice(price)
+        }
+
+
+
+
+        
+                    if (price.length > 1) {
+                        let sum = price.reduce(function (accumulator, currentValue) {
+                            return accumulator + currentValue;
+                        });
+                        console.log(sum);
+                        setTotalPrice(sum)
+                        console.log(totalPrice);
+                    } else {
+                        console.log(totalPrice);
+                        setTotalPrice(currentPrice => [...currentPrice, selectedPrice])
+                        console.log(totalPrice);
+                    }
+*/

@@ -4,13 +4,16 @@ import TextField from '@material-ui/core/TextField';
 const LoginInput = ({attribute, handleChange}) =>{
     return (
         <div>
-            <TextField 
+            <TextField  
             id= {attribute.id}
             name= {attribute.name}
             label= {attribute.label} 
             fullWidth= {attribute.fullWidth} 
             onChange= { (e) => handleChange(e.target.name, e.target.value) }
             type= {attribute.type} 
+            InputLabelProps={{
+                className: "test-label" 
+              }}           
             />
         </div>
     )

@@ -1,0 +1,41 @@
+.productcont{
+    width: 100%;
+}
+
+.productcolumns{
+    display: flex;
+    width: 100%;
+}
+
+.productimg{
+    width: 50%;
+    display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.productcard{
+    color: white;
+    width: 50%;
+    padding-right: 40px;
+}
+
+.img-container{
+    height: 400px;
+    max-width: 300px;
+    overflow: hidden;
+    padding: 20px;
+}
+
+.img-container img{
+    width: 100%;
+    height: auto;
+}
+
+.container-cantidad{
+    height: 20px;
+}
+
+.container-cantidad2{
+    height: 20px;
+}
