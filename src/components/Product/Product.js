@@ -62,42 +62,60 @@ function Product ({products}) {
     console.log(totalPrice)
 
     const addToCart = () => {
-        products.map(product =>{
-            console.log(cartItems)
-            
-                if(id===product.id) {
-                    console.log(cartItems) 
-                    product.qty = cartItems;
-                    console.log(product) 
+        console.log(cart)
+        console.log(products)
+        console.log(id)    
+        var existingEntries = JSON.parse(localStorage.getItem("cartId"));
+        if(existingEntries == null) existingEntries = [''];
 
-                    //for (var i = 0; i < cartItems.length; i++) {
-                        const selectedProduct = product;
-                        console.log(selectedProduct);
-                        setCart(currentCart => [...currentCart, selectedProduct])
-                        
-                        const selectedPrice = parseFloat(product.price);
-                        let qtyPrice = (selectedPrice * cartItems);
-                        setPrice(currentPrice => [...currentPrice, qtyPrice])
-                        
-                        //setCartItemsFinal([4])
-                        //let savePlayer2 = JSON.stringify([selectedPrice, cartItemsFinal]);
-                        //localStorage.setItem(selectedProduct.id, savePlayer2 )
 
-                        
-                        setCartItems(1)
+        const found = existingEntries.find(element => element === id);
+
+        console.log(found);
+        if(found == id) return;
+        
+
+        console.log(existingEntries)   
+        localStorage.setItem("cartId", JSON.stringify(id));
     
-                    //}
-
-                    
-                    document.querySelector(".container-cantidad").innerHTML = `
-                        <Typography variant="caption" display="block" gutterBottom>
-                            Agregaste ${cartItems} productos
-                        </Typography>
-                    `
-                }
+        existingEntries.push(id);
+        localStorage.setItem("cartId", JSON.stringify(existingEntries));
             
-        })
 
+        products.map(product =>{
+            console.log(cartItems)            
+                if(id===product.id) {
+                            console.log(cartItems) 
+                            product.qty = cartItems;
+                            console.log(product) 
+
+                            const selectedProduct = product;
+                            console.log(selectedProduct);
+                            setCart(currentCart => [...currentCart, selectedProduct])
+                            
+                            const selectedPrice = parseFloat(product.price);
+                            let qtyPrice = (selectedPrice * cartItems);
+                            setPrice(currentPrice => [...currentPrice, qtyPrice])
+                                                        
+                            setCartItems(1)
+
+                            document.querySelector(".container-cantidad").innerHTML = `
+                                <Typography variant="caption" display="block" gutterBottom>
+                                    Agregaste ${cartItems} productos
+                                </Typography>
+                            ` 
+            }
+            
+        })          
+
+        existingEntries.forEach(element => {
+            console.log(element)
+            if(element === id){
+                console.log('ya lo tenes eee')
+                return;
+            } else {
+            }
+        })
     }
 
     useEffect(() => {
