@@ -43,9 +43,14 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
       fontSize: 14,
-      fontWeight: 200,
+      fontWeight: 400,
       letterSpacing: 0.5,
     },
+    price: {
+        fontSize: 12,
+        fontWeight: 300,
+        letterSpacing: 0.5,
+      },
     pos: {
       marginBottom: 12,
     },
@@ -68,12 +73,13 @@ function ItemList(props) {
                                     <div className='some-style'>
                                         <img src={props.product.product.image} alt={props.product.product.title} />
                                     </div>
+                                    <br/>
                                         
                                     <Typography className={classes.title} align="center" gutterBottom>
                                         {props.product.product.title}
                                     </Typography>
                                         
-                                    <Typography className={classes.title} align="center" gutterBottom>
+                                    <Typography className={classes.price} align="center" gutterBottom>
                                         ${props.product.product.price}
                                     </Typography>
                                         

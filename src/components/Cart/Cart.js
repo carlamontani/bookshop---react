@@ -82,7 +82,6 @@ const Cart = () => {
         var user = JSON.parse(localStorage.getItem('player'));
         setUser(user)
 
-
         const orders = db.collection("orders");
         const newOrder = {
             items: cart,
@@ -99,17 +98,6 @@ const Cart = () => {
             setLoading(false);
         });
     }
-    //
-
-    //var totalprice;
-
-    //console.log(sum);
-    //var price = cart.map(itemprice =>{
-
-    //    var originalprice = itemprice.price;
-    //    totalprice += parseFloat(originalprice);
-        
-    //}) 
 
     function precioTotalSuma(){
         console.log(price)
@@ -127,6 +115,14 @@ const Cart = () => {
     }
     precioTotalSuma()
 
+    function deleteCart(){
+        console.log('t bora el chango');
+        sessionStorage.clear();
+        setCart([]);
+        setPrice([]);
+        setTotalPrice([]);
+    }
+
     console.log(totalPrice)
 
     function deleteOrder(id){
@@ -137,6 +133,7 @@ const Cart = () => {
                     if (cart[i].qty === 0){
                         var removeItem = document.getElementById(`itemDiv${cart[i].id}`);
                         removeItem.innerHTML = '';
+                        
                         return
                     } else {
                         cart[i].qty = cart[i].qty -1;
@@ -174,21 +171,29 @@ const Cart = () => {
                                             console.log(item.qty)
                                         } else {
                                             return(
-                                                <div id = {"itemDiv" + item.id}>
-                                                    <Typography variant="h5" gutterBottom>
-                                                        {item.title}
-                                                    </Typography>
-                                                    <Typography variant="body2" gutterBottom>
-                                                        Cantidad: {item.qty}
-                                                    </Typography>
-                                                    <Typography variant="subtitle2" gutterBottom>
-                                                        ${item.price}
-                                                    </Typography>
-                                                    <Button color="secondary" onClick = {() => deleteOrder(item.id)}>
-                                                        x
-                                                    </Button> 
-                                                    <br/>
-                                                </div> 
+                                                <div class="cart-flex">
+                                                    <div class="img-container-cart">
+                                                        <img src={item.image} alt={item.title} />
+                                                    </div>
+                                                    <div id = {"itemDiv" + item.id}>
+                                                        <Typography variant="h5" gutterBottom>
+                                                            {item.title}
+                                                        </Typography>
+                                                        <Typography variant="body2" gutterBottom>
+                                                            Cantidad: {item.qty}
+                                                        </Typography>
+                                                        <Typography variant="subtitle2" gutterBottom>
+                                                            ${item.price}
+                                                        </Typography>
+                                                        <Button color="secondary" onClick = {() => deleteOrder(item.id)}>
+                                                            -
+                                                        </Button> 
+                                                        <Button color="secondary" onClick = {() => deleteOrder(item.id)}>
+                                                            +
+                                                        </Button>
+                                                        <br/>
+                                                    </div> 
+                                                </div>
                                             )
                                         }
                                     }                            
@@ -196,6 +201,13 @@ const Cart = () => {
                                 <Typography variant="subtitle2" gutterBottom>
                                     Precio Total: ${totalPrice}
                                 </Typography>
+                                <br/>
+                                <hr/>
+                                <br/>
+                                <Button color="secondary" onClick = {() => deleteCart()}>
+                                    Vaciar carrito
+                                </Button> 
+
                             </div>
                             
                             <div class= "productcard">

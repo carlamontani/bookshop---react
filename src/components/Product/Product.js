@@ -65,21 +65,28 @@ function Product ({products}) {
         console.log(cart)
         console.log(products)
         console.log(id)    
-        var existingEntries = JSON.parse(localStorage.getItem("cartId"));
+        var existingEntries = JSON.parse(sessionStorage.getItem("cartId"));
         if(existingEntries == null) existingEntries = [''];
 
 
         const found = existingEntries.find(element => element === id);
+        if(found == id) {
+            console.log('error');
+            document.querySelector(".container-cantidad").innerHTML = "";
+            document.querySelector(".container-cantidad").innerHTML = `
+                                <Typography variant="caption" display="block" gutterBottom>
+                                    Este producto ya fue agregado
+                                </Typography>
+                            ` 
+            return;
+        }
 
-        console.log(found);
-        if(found == id) return;
-        
 
         console.log(existingEntries)   
-        localStorage.setItem("cartId", JSON.stringify(id));
+        sessionStorage.setItem("cartId", JSON.stringify(id));
     
         existingEntries.push(id);
-        localStorage.setItem("cartId", JSON.stringify(existingEntries));
+        sessionStorage.setItem("cartId", JSON.stringify(existingEntries));
             
 
         products.map(product =>{
@@ -107,15 +114,6 @@ function Product ({products}) {
             }
             
         })          
-
-        existingEntries.forEach(element => {
-            console.log(element)
-            if(element === id){
-                console.log('ya lo tenes eee')
-                return;
-            } else {
-            }
-        })
     }
 
     useEffect(() => {
@@ -153,19 +151,18 @@ function Product ({products}) {
                                             <div class="productimg"> 
                                                 <div class="img-container">
                                                     <img src={product.image} alt={product.title} />
-                                                </div>                                               
-                                        
+                                                </div>
                                             </div>
                                             <Card id="transparent" variant="outlined" class="productcard">
                                                 <CardContent>
-                                                    <Typography variant="h5" color="secondary" gutterBottom>
+                                                    <Typography variant="h5" color="secondary" gutterBottom style={{fontWeight: 600}}>
                                                         {product.title}
                                                     </Typography>
                                                     <Typography variant="body2" gutterBottom>
-                                                        {product.author}
+                                                        <span class="tituloitem">Autor. </span> {product.author}
                                                     </Typography>
-                                                    <Typography variant="subtitle2" gutterBottom>
-                                                        ${product.price}
+                                                    <Typography variant="body2" gutterBottom>
+                                                        <span class="tituloitem">Precio. </span> ${product.price}
                                                     </Typography>
 
                                                     <ItemCount /> 
@@ -178,16 +175,13 @@ function Product ({products}) {
                                                     <br/><br/>
                                                     <div class="container-cantidad"></div>
                                                     <br/>
-                                                    <br/>
-                                                    <Typography variant="subtitle2" gutterBottom>
-                                                        Descripción:
-                                                    </Typography>
+                                                    <span class="tituloitem">Descripción. </span>
                                                     <Typography variant="body2" gutterBottom>
                                                         {product.description}
                                                     </Typography>
                                                     <br/>
                                                     <Typography variant="body2" gutterBottom>
-                                                        ISBN: {product.isbn}
+                                                        <span class="tituloitem">Isbn. </span>  {product.isbn}
                                                     </Typography>
                                                 </CardContent>
                                             </Card>

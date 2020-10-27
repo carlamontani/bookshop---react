@@ -10,8 +10,8 @@
 .productimg{
     width: 50%;
     display: flex;
-  align-items: center;
-  justify-content: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .productcard{
@@ -27,15 +27,38 @@
     padding: 20px;
 }
 
+.img-container-cart{
+    height: 150px;
+    max-width: 100px;
+    overflow: hidden;
+    padding: 0 20px 20px 0;
+}
+
 .img-container img{
     width: 100%;
     height: auto;
 }
 
+.img-container-cart img{
+    width: 100%;
+    height: auto;
+}
+
 .container-cantidad{
-    height: 20px;
+    height: 15px;
 }
 
 .container-cantidad2{
-    height: 20px;
+    height: 15px;
+}
+
+.container-carrito{
+    height: 15px;
+}
+.tituloitem{
+    font-weight: 300;
+}
+
+.cart-flex{
+    display: flex;
 }

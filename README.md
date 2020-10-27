@@ -24,7 +24,7 @@ The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
 ## Contribute
--Fork this Repo
--Create a Pull Request
--Ask for my review
--Push your changes
+-Fork this Repo<br />
+-Create a Pull Request<br />
+-Ask for my review<br />
+-Push your changes<br />
