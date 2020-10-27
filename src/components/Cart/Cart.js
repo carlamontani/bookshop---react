@@ -58,22 +58,9 @@ const Cart = () => {
     
     const [cartItems, setCartItems] = useContext(CartItemsContext);
 
-    //const [cartItemsFinal, setCartItemsFinal] = useContext(CartItemsContext);
-
-
-    console.log(cart)
-    console.log(user)
-    console.log(price)
-    console.log(totalPrice)
-    console.log(cartItems)
-    //console.log(cartItemsFinal)
-
     const [id, setOrderId] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState();
-
-    //const [totalPrice, setTotalPrice] = useState('');
-    //console.log(totalPrice)
 
     const db = getFirestore();
 
@@ -100,14 +87,11 @@ const Cart = () => {
     }
 
     function precioTotalSuma(){
-        console.log(price)
-        console.log(cartItems)
         if (price.length > 1) {
 
             let sum = price.reduce(function (accumulator, currentValue) {
                 return accumulator + parseFloat(currentValue);
             });
-            console.log(sum)
             setTotalPrice (sum);
         } else {
             setTotalPrice(price);
@@ -116,31 +100,30 @@ const Cart = () => {
     precioTotalSuma()
 
     function deleteCart(){
-        console.log('t bora el chango');
         sessionStorage.clear();
         setCart([]);
         setPrice([]);
         setTotalPrice([]);
     }
 
-    console.log(totalPrice)
+    if(totalPrice[0] == 0){
+        deleteCart()
+    }
 
-    function deleteOrder(id){
+    function minOrder(id){
             for (let i = 0; i < cart.length; i++) {
-                //const element = array[index];
                 if (id === cart[i].id ){
                     
                     if (cart[i].qty === 0){
                         var removeItem = document.getElementById(`itemDiv${cart[i].id}`);
                         removeItem.innerHTML = '';
-                        
+
                         return
                     } else {
                         cart[i].qty = cart[i].qty -1;
-                        console.log(cart[i].qty)
+                        
                         let precioResta = parseFloat(cart[i].price);
-                        console.log(precioResta);
-                        console.log(totalPrice)
+                    
                         setPrice([ totalPrice - precioResta ]);
                         if(cart[i].qty === 0){
                             var removeItem = document.getElementById(`itemDiv${cart[i].id}`);
@@ -149,9 +132,34 @@ const Cart = () => {
                         precioTotalSuma()
                     }
                 }
-            }
-        
+            }      
     }
+
+    function sumOrder(id){
+        for (let i = 0; i < cart.length; i++) {
+            //const element = array[index];
+            if (id === cart[i].id ){
+                
+                if (cart[i].qty === 0){
+                    var removeItem = document.getElementById(`itemDiv${cart[i].id}`);
+                    removeItem.innerHTML = '';
+
+                    return
+                } else {
+                    cart[i].qty = parseFloat(cart[i].qty) +1;
+                    let precioSuma = parseFloat(cart[i].price);
+                    var totalPriceInt = parseFloat(totalPrice)
+                    setPrice([ totalPriceInt + precioSuma ]);
+                    if(cart[i].qty === 0){
+                        var removeItem = document.getElementById(`itemDiv${cart[i].id}`);
+                        removeItem.innerHTML = '';
+                    }
+                    precioTotalSuma()
+                }
+            }
+        }      
+    }
+
 
     return (
         <div className={classes.root} container style={{ padding: 20 }} class ="text-color ">
@@ -167,15 +175,12 @@ const Cart = () => {
                             <div class= "productcard">
                                 {
                                     cart.map(item => {
-                                        if (item.qty === 0) {
-                                            console.log(item.qty)
-                                        } else {
                                             return(
-                                                <div class="cart-flex">
+                                                <div class="cart-flex" id = {"itemDiv" + item.id}>
                                                     <div class="img-container-cart">
                                                         <img src={item.image} alt={item.title} />
                                                     </div>
-                                                    <div id = {"itemDiv" + item.id}>
+                                                    <div>
                                                         <Typography variant="h5" gutterBottom>
                                                             {item.title}
                                                         </Typography>
@@ -185,17 +190,16 @@ const Cart = () => {
                                                         <Typography variant="subtitle2" gutterBottom>
                                                             ${item.price}
                                                         </Typography>
-                                                        <Button color="secondary" onClick = {() => deleteOrder(item.id)}>
+                                                        <Button color="secondary" onClick = {() => minOrder(item.id)}>
                                                             -
                                                         </Button> 
-                                                        <Button color="secondary" onClick = {() => deleteOrder(item.id)}>
+                                                        <Button color="secondary" onClick = {() => sumOrder(item.id)}>
                                                             +
                                                         </Button>
                                                         <br/>
                                                     </div> 
                                                 </div>
                                             )
-                                        }
                                     }                            
                                 )}
                                 <Typography variant="subtitle2" gutterBottom>
@@ -250,31 +254,3 @@ const Cart = () => {
 }
 
 export default Cart;
-
-//<span>Total Price: {totalprice} </span> 
-/*
-function totaltotalPrice(){
-        //var totalprice = 0;
-        cart.map(itemprice =>{
-            console.log(itemprice)
-            var originalprice = itemprice.price;
-            console.log(originalprice)
-            //totalprice += parseFloat(originalprice);
-            //console.log(originalprice)
-            setTotalPrice(originalprice)
-        }) 
-        //console.log(totalPrice)
-        //setTotalPrice(totalprice)
-    }
-    //totaltotalPrice();
-
-
-    function totaltotalTotal(){
-        var sum = price.reduce(function(a, b){
-            return a + b;
-        }, 0);
-        console.log(sum);
-        //setTotalPrice(sum)
-    }
-    totaltotalTotal()
-     */

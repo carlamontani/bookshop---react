@@ -60,7 +60,7 @@ function ItemList(props) {
     
     const classes = useStyles();
 
-    console.log("estoy en Products con", props)
+    //console.log(props)
 
     return(
         <div className={classes.root} style={{ padding: 20 }} >

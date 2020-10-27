@@ -40,8 +40,6 @@ function Product ({products}) {
     const classes = useStyles();
 
     const { id } = useParams();
-    console.log(products)
-    console.log(id)
 
     const [cart, setCart] = useContext(CartContext);
 
@@ -55,23 +53,13 @@ function Product ({products}) {
 
     //const [totalPrice, setTotalPrice] = useState('');
 
-    console.log(cartItems)
-    //console.log(cartItemsFinal)
-    console.log(cart)
-    console.log(price)
-    console.log(totalPrice)
-
     const addToCart = () => {
-        console.log(cart)
-        console.log(products)
-        console.log(id)    
         var existingEntries = JSON.parse(sessionStorage.getItem("cartId"));
         if(existingEntries == null) existingEntries = [''];
 
 
         const found = existingEntries.find(element => element === id);
         if(found == id) {
-            console.log('error');
             document.querySelector(".container-cantidad").innerHTML = "";
             document.querySelector(".container-cantidad").innerHTML = `
                                 <Typography variant="caption" display="block" gutterBottom>
@@ -81,8 +69,6 @@ function Product ({products}) {
             return;
         }
 
-
-        console.log(existingEntries)   
         sessionStorage.setItem("cartId", JSON.stringify(id));
     
         existingEntries.push(id);
@@ -90,14 +76,10 @@ function Product ({products}) {
             
 
         products.map(product =>{
-            console.log(cartItems)            
                 if(id===product.id) {
-                            console.log(cartItems) 
                             product.qty = cartItems;
-                            console.log(product) 
 
                             const selectedProduct = product;
-                            console.log(selectedProduct);
                             setCart(currentCart => [...currentCart, selectedProduct])
                             
                             const selectedPrice = parseFloat(product.price);
@@ -139,7 +121,6 @@ function Product ({products}) {
                     {
                         products ?
                         products.map(product =>{
-                            console.log(product)
                             if(id===product.id) {
                                 return(
                                     <div class="productcont">
@@ -200,33 +181,3 @@ function Product ({products}) {
 }
 
 export default withRouter(Product);
-
-/*
-
-        if (price.length > 1) {
-            var sum = price.reduce(function(a, b){
-                return a + b;
-            });
-            console.log(sum);
-            setTotalPrice(sum)
-        } else {
-            setTotalPrice(price)
-        }
-
-
-
-
-        
-                    if (price.length > 1) {
-                        let sum = price.reduce(function (accumulator, currentValue) {
-                            return accumulator + currentValue;
-                        });
-                        console.log(sum);
-                        setTotalPrice(sum)
-                        console.log(totalPrice);
-                    } else {
-                        console.log(totalPrice);
-                        setTotalPrice(currentPrice => [...currentPrice, selectedPrice])
-                        console.log(totalPrice);
-                    }
-*/

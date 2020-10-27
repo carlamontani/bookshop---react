@@ -107,7 +107,6 @@ const App = () => {
       setLoading(false);
     })
   }, []);
-  console.log(items)
 
   if (!loading) {
 
