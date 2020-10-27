@@ -1,8 +1,10 @@
 .text-color{
-    color: white;
+    font-family: 'Montserrat';
 }
 .test-label {
-    color: white !important;
     font-size: 12px !important;
-    font-weight: 300 !important;
 }
+
+hr {
+    border-top: 0.5px solid rgb(194, 194, 194);
+  }

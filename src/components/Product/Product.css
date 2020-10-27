@@ -15,7 +15,6 @@
 }
 
 .productcard{
-    color: white;
     width: 50%;
     padding-right: 40px;
 }
@@ -56,7 +55,8 @@
     height: 15px;
 }
 .tituloitem{
-    font-weight: 300;
+    font-weight: 600;
+    font-size: 14px;
 }
 
 .cart-flex{

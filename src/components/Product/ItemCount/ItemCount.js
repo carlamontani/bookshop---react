@@ -88,7 +88,7 @@ function ItemCount(){
 
     return(
         <div className={classes.root} >
-            <Button color="secondary" size="small" onClick={() => decrease_quantity()}>
+            <Button color="primary" size="small" onClick={() => decrease_quantity()}>
                 <RemoveIcon/>
             </Button>
 
@@ -100,7 +100,7 @@ function ItemCount(){
                 value={value}
                 param={valueError}
             />
-            <Button color="secondary" size="small" onClick={() => increase_quantity()}>
+            <Button color="primary" size="small" onClick={() => increase_quantity()}>
                 <AddIcon/>
             </Button>
             <div class="container-cantidad2"> {valueError && 

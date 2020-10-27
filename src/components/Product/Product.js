@@ -136,7 +136,7 @@ function Product ({products}) {
                                             </div>
                                             <Card id="transparent" variant="outlined" class="productcard">
                                                 <CardContent>
-                                                    <Typography variant="h5" color="secondary" gutterBottom style={{fontWeight: 600}}>
+                                                    <Typography variant="h5" color="primary" gutterBottom style={{fontWeight: 600}}>
                                                         {product.title}
                                                     </Typography>
                                                     <Typography variant="body2" gutterBottom>

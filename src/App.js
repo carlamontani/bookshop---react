@@ -44,9 +44,6 @@ const theme = createMuiTheme({
       dark: '#aeea00',
       contrastText: '#ff1744',
     },
-    text:{
-      primary: "#FFFFFF"
-    }
   },
   typography: {
     "fontFamily": `"Montserrat", "Helvetica", "Arial", sans-serif`,
@@ -122,7 +119,7 @@ const App = () => {
                       <Switch>            
                       <Route exact path="/">
                         <div style={{ padding: 20 }} > 
-                        <Typography variant="h4" color="secondary" align="center" >
+                        <Typography variant="h4" color="primary" align="center" >
                             Novedades
                         </Typography>
                           <Grid

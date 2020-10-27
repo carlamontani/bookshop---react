@@ -43,12 +43,12 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
       fontSize: 14,
-      fontWeight: 400,
+      fontWeight: 600,
       letterSpacing: 0.5,
     },
     price: {
         fontSize: 12,
-        fontWeight: 300,
+        fontWeight: 400,
         letterSpacing: 0.5,
       },
     pos: {
@@ -85,7 +85,7 @@ function ItemList(props) {
                                         
                                         
                                     <NavLink to= {`/product/${props.product.product.id}`}>
-                                        <Button color="secondary" alignItems="center"> 
+                                        <Button color="primary" alignItems="center"> 
                                             Ver Más
                                         </Button>
                                     </NavLink>

@@ -170,7 +170,7 @@ const Cart = () => {
     return (
         <div className={classes.root} container style={{ padding: 20 }} class ="text-color ">
             
-            <Typography variant="h4" color="secondary" align="center" >
+            <Typography variant="h4" color="primary" align="center" >
                 Carrito
             </Typography>
             <br/><br/>
@@ -196,10 +196,10 @@ const Cart = () => {
                                                         <Typography variant="subtitle2" gutterBottom>
                                                             ${item.price}
                                                         </Typography>
-                                                        <Button color="secondary" onClick = {() => minOrder(item.id)}>
+                                                        <Button color="primary" onClick = {() => minOrder(item.id)}>
                                                             -
                                                         </Button> 
-                                                        <Button color="secondary" onClick = {() => sumOrder(item.id)}>
+                                                        <Button color="primary" onClick = {() => sumOrder(item.id)}>
                                                             +
                                                         </Button>
                                                         <br/>
@@ -207,14 +207,14 @@ const Cart = () => {
                                                 </div>
                                             )
                                     }                            
-                                )}
-                                <Typography variant="subtitle2" gutterBottom>
-                                    Precio Total: ${totalPrice}
-                                </Typography>
+                                )}             
+                                    <Typography variant="body2" gutterBottom>
+                                        Precio Total:<span class="tituloitem">$ {totalPrice} </span> 
+                                    </Typography>
                                 <br/>
                                 <hr/>
                                 <br/>
-                                <Button color="secondary" onClick = {() => deleteCart()}>
+                                <Button color="primary" onClick = {() => deleteCart()}>
                                     Vaciar carrito
                                 </Button> 
 
@@ -225,7 +225,7 @@ const Cart = () => {
                                 <br/>
 
                                 <NavLink to={`/`}>
-                                    <Button color="secondary"> 
+                                    <Button color="primary"> 
                                         Volver
                                     </Button>
                                 </NavLink> 
@@ -252,7 +252,7 @@ const Cart = () => {
                                         Tu Carrito esta vacío
                                     </Typography>
                                     <NavLink to={`/`}>
-                                        <Button color="secondary"> 
+                                        <Button color="primary"> 
                                             Volver
                                         </Button>
                                     </NavLink>
@@ -265,7 +265,7 @@ const Cart = () => {
                             <br/>
 
                             <NavLink to={`/`}>
-                                <Button color="secondary"> 
+                                <Button color="primary"> 
                                     Volver
                                 </Button>
                             </NavLink> 
