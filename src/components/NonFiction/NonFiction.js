@@ -86,8 +86,8 @@ const NonFiction = () => {
     }
     if (loading) {
       return (
-        <div className={classes.root}>
-          <CircularProgress color="primary" />
+        <div className={classes.root} class="loadingflex">
+          <CircularProgress color="secondary" />
         </div>
       );
     }

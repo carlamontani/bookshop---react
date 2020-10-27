@@ -39,9 +39,9 @@ const theme = createMuiTheme({
       contrastText: '#fff',
     },
     secondary: {
-      light: '#b26500',
+      light: '#d1ff33',
       main: '#c6ff00',
-      dark: '#ffa733',
+      dark: '#aeea00',
       contrastText: '#ff1744',
     },
     text:{
@@ -179,8 +179,8 @@ const App = () => {
   }
   if (loading) {
     return (
-      <div className={classes.root}>
-        <CircularProgress color="secondary" />
+      <div className={classes.root} class="loadingflex">
+        <CircularProgress color="secondary"/>
       </div>
     );
   }

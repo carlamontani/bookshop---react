@@ -1,5 +1,5 @@
 # LoremLibrum
-online bookstore
+Online Bookstore
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -24,7 +24,10 @@ The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
 ## Contribute
--Fork this Repo<br />
--Create a Pull Request<br />
--Ask for my review<br />
--Push your changes<br />
+- Fork this Repo
+- Create a Pull Request
+- Ask for my review
+- Push your changes
+
+## Extra Docs
+- [Environment](docs/Environment.md)
