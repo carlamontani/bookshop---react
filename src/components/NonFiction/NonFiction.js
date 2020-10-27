@@ -8,6 +8,7 @@ import Home from '../Home/Home';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -67,6 +68,9 @@ const NonFiction = () => {
   
       return (
         <div style={{ padding: 20 }} > 
+        <Typography variant="h4" color="secondary" align="center" >
+          No Ficción
+        </Typography>
           <Grid
             container
             spacing={0}

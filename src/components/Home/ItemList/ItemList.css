@@ -24,3 +24,11 @@ a {
     align-items: center;
     flex-direction: column;
 }
+
+#pedidook, .container-cantidad, .container-cantidad2{
+    color: #c6ff00;
+    font-family: "Montserrat";
+    font-weight: 200;
+    font-size: 12px;
+    padding-top: 10px;
+}

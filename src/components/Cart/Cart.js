@@ -84,6 +84,12 @@ const Cart = () => {
         }).finally(()=> {
             setLoading(false);
         });
+
+        sessionStorage.clear();
+        setCart([]);
+        setPrice([]);
+        setTotalPrice([]);
+        document.querySelector("#pedidook").innerText="Pedido enviado, nos contactaremos con usted por mail."
     }
 
     function precioTotalSuma(){
@@ -227,25 +233,51 @@ const Cart = () => {
                                 <Button color="secondary" variant="contained" onClick = { createNewOrder } >
                                     Realizar el pedido
                                 </Button> 
+                                <div id="pedidook">
+
+                                </div>
 
                             </div>                               
                         </div>
                     :
-                    <div className={classes.root}>
-                        
-                            <div>
-                                <iframe src="https://giphy.com/embed/l3q2K5jinAlChoCLS" width="150" height="200" frameBorder="0"></iframe>
+                    <div class="productcolumns">
+                        <div class= "productcard">
+                            <div className={classes.root}>
+                                
+                                    <div>
+                                        <iframe src="https://giphy.com/embed/l3q2K5jinAlChoCLS" width="150" height="200" frameBorder="0"></iframe>
+                                    </div>
+                                    <br/>
+                                    <Typography variant="body2" gutterBottom class ="text-color">
+                                        Tu Carrito esta vacío
+                                    </Typography>
+                                    <NavLink to={`/`}>
+                                        <Button color="secondary"> 
+                                            Volver
+                                        </Button>
+                                    </NavLink>
+                                
                             </div>
+                        </div>
+                            
+                        <div class= "productcard">
+                            <NewUser/>
                             <br/>
-                            <Typography variant="body2" gutterBottom class ="text-color">
-                                Tu Carrito esta vacío
-                            </Typography>
+
                             <NavLink to={`/`}>
                                 <Button color="secondary"> 
                                     Volver
                                 </Button>
-                            </NavLink>
-                         
+                            </NavLink> 
+
+                                <Button color="secondary" variant="contained" onClick = { createNewOrder } >
+                                    Realizar el pedido
+                                </Button> 
+                                <div id="pedidook">
+
+                                </div>
+
+                        </div>                               
                     </div>
                 }
             </div>
