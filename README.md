@@ -1,5 +1,5 @@
-# LoremLibrum :monkey:
-Online Bookstore :monkey:
+# LoremLibrum
+Online Bookstore :books:
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -25,7 +25,8 @@ Your app is ready to be deployed!
 
 ## Navigation Preview
 
-![Farmers Market Finder Demo](demo/gif1.gif)
+![LoremLibrum Demo](demo/gif1.gif)
+![LoremLibrum Demo](demo/gif2.gif)
 
 ## Contribute
 - Fork this Repo
