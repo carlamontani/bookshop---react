@@ -244,9 +244,7 @@ const Cart = () => {
                         <div class= "productcard">
                             <div className={classes.root}>
                                 
-                                    <div>
-                                        <iframe src="https://giphy.com/embed/l3q2K5jinAlChoCLS" width="150" height="200" frameBorder="0"></iframe>
-                                    </div>
+                                    
                                     <br/>
                                     <Typography variant="body2" gutterBottom class ="text-color">
                                         Tu Carrito esta vacío

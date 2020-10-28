@@ -1,5 +1,5 @@
-# LoremLibrum
-Online Bookstore
+# LoremLibrum :monkey:
+Online Bookstore :monkey:
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -22,6 +22,10 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
+
+## Navigation Preview
+
+![Farmers Market Finder Demo](demo/gif1.gif)
 
 ## Contribute
 - Fork this Repo
