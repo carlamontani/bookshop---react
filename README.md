@@ -25,8 +25,19 @@ Your app is ready to be deployed!
 
 ## Navigation Preview
 
-![LoremLibrum Demo](demo/gif1.gif)
-![LoremLibrum Demo](demo/gif2.gif)
+![LoremLibrum Demo](demo/gif1.gif)<br /><br />
+![LoremLibrum Demo](demo/gif2.gif)<br /><br />
+
+## Desktop version :computer:
+![LoremLibrum Demo](demo/img1.png)<br /><br />
+![LoremLibrum Demo](demo/img2.png)<br /><br />
+![LoremLibrum Demo](demo/img3.png)<br /><br />
+![LoremLibrum Demo](demo/img4.png)<br /><br />
+
+## Mobile version :iphone:
+![LoremLibrum Demo](demo/img5.png)<br /><br />
+![LoremLibrum Demo](demo/img6.png)<br /><br />
+![LoremLibrum Demo](demo/img7.png)<br /><br />
 
 ## Contribute
 - Fork this Repo

@@ -20,7 +20,8 @@ import Button from '@material-ui/core/Button';
 import { getFirestore } from '../../firebase';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 
 
 //COMPONENTES
@@ -197,10 +198,10 @@ const Cart = () => {
                                                             ${item.price}
                                                         </Typography>
                                                         <Button color="primary" onClick = {() => minOrder(item.id)}>
-                                                            -
+                                                            <RemoveIcon/>   
                                                         </Button> 
                                                         <Button color="primary" onClick = {() => sumOrder(item.id)}>
-                                                            +
+                                                            <AddIcon/>
                                                         </Button>
                                                         <br/>
                                                     </div> 

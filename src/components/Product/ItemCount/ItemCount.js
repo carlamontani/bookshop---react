@@ -99,6 +99,7 @@ function ItemCount(){
                 onChange={ (e) => handleChange(e.target.value)}
                 value={value}
                 param={valueError}
+                style={{ width: '50px', paddingTop: '20px' }}
             />
             <Button color="primary" size="small" onClick={() => increase_quantity()}>
                 <AddIcon/>
