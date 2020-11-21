@@ -103,7 +103,7 @@ function Product ({products}) {
                             if(id===product.id) {
                                 return(
                                     <div class="productcont">
-                                        <Typography variant="caption">
+                                        <Typography variant="caption" style={{ paddingLeft: 6}}>
                                             home / {product.categoryId} 
                                         </Typography>
                                         <div class="productcolumns">

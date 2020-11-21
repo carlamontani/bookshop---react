@@ -23,7 +23,7 @@ function Footer() {
     const classes = useStyles();
 
     return(
-        <div id="footer">
+        <div id="footer" style={{ paddingLeft: 28}}>
             <div className={classes.root}>
               <Link href="https://github.com/carlamontani" target="_blank">
                 <GitHubIcon/>

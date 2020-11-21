@@ -48,7 +48,7 @@ export default function Login() {
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
-        <Typography variant="h5" color="primary" >
+        <Typography variant="p">
             Formulario de Compra
         </Typography>
         

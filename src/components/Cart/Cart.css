@@ -8,3 +8,18 @@
 hr {
     border-top: 0.5px solid rgb(194, 194, 194);
   }
+
+.div-height{
+    height: 90vh;
+}
+
+#pedidook{
+    height: 30px;
+    padding-top: 0;
+}
+.pedidook{
+    font-size: 15px;
+    padding-top: 0;
+    margin: 0;
+    font-weight: 600;
+}

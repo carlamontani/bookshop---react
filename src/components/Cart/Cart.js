@@ -65,7 +65,6 @@ const Cart = () => {
 
     const db = getFirestore();
 
-    
     function createNewOrder(){        
         var user = JSON.parse(localStorage.getItem('player'));
         setUser(user)
@@ -78,8 +77,10 @@ const Cart = () => {
             total: totalPrice
         }
 
+
         orders.add(newOrder).then(({id}) => {
             setOrderId(id)
+            document.querySelector("#pedidook").innerHTML= `<p class="pedidook">Recibimos su pedido #${id}, nos contactaremos por mail.</p>`
         }).catch(err => {
             setError(err)
         }).finally(()=> {
@@ -90,7 +91,6 @@ const Cart = () => {
         setCart([]);
         setPrice([]);
         setTotalPrice([]);
-        document.querySelector("#pedidook").innerText="Pedido enviado, nos contactaremos con usted por mail."
     }
 
     function precioTotalSuma(){
@@ -169,12 +169,16 @@ const Cart = () => {
 
 
     return (
-        <div className={classes.root} container style={{ padding: 20 }} class ="text-color ">
+        <div className={classes.root} container style={{ padding: 20 }} class ="text-color div-height">
             
             <Typography variant="h5" color="primary" align="center" style={{ paddingTop: 20, fontWeight: 300, fontSize: 20 }}>
                 Carrito
             </Typography>
             <br/><br/>
+            
+            <div id="pedidook">
+
+            </div>
             <div class="productcolumns" >
                 {
                     cart.length ?
@@ -231,31 +235,25 @@ const Cart = () => {
                                     </Button>
                                 </NavLink> 
 
-                                <Button color="secondary" variant="contained" onClick = { createNewOrder } >
+                                <Button color="primary" variant="contained" onClick = { createNewOrder } >
                                     Realizar el pedido
-                                </Button> 
-                                <div id="pedidook">
-
-                                </div>
+                                </Button>
 
                             </div>                               
                         </div>
                     :
                     <div class="productcolumns">
                         <div class= "productcard">
-                            <div className={classes.root}>
-                                
-                                    
-                                    <br/>
-                                    <Typography variant="body2" gutterBottom class ="text-color">
+                            <div className={classes.root}>                                
+                                <br/>
+                                <Typography variant="body2" gutterBottom class ="text-color">
                                         Tu Carrito esta vacío
-                                    </Typography>
-                                    <NavLink to={`/`}>
-                                        <Button color="primary"> 
+                                </Typography>
+                                <NavLink to={`/`}>
+                                    <Button color="primary"> 
                                             Volver
-                                        </Button>
-                                    </NavLink>
-                                
+                                    </Button>
+                                </NavLink>                                
                             </div>
                         </div>
                             
@@ -269,12 +267,9 @@ const Cart = () => {
                                 </Button>
                             </NavLink> 
 
-                                <Button color="secondary" variant="contained" onClick = { createNewOrder } >
+                                <Button color="primary" variant="contained" onClick = { createNewOrder } >
                                     Realizar el pedido
-                                </Button> 
-                                <div id="pedidook">
-
-                                </div>
+                                </Button>
 
                         </div>                               
                     </div>
