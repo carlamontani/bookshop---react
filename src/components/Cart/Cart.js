@@ -1,5 +1,5 @@
 
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import './Cart.css';
@@ -113,7 +113,7 @@ const Cart = () => {
         setTotalPrice([]);
     }
 
-    if(totalPrice[0] == 0){
+    if(totalPrice[0] === 0){
         deleteCart()
     }
 
@@ -122,7 +122,7 @@ const Cart = () => {
                 if (id === cart[i].id ){
                     
                     if (cart[i].qty === 0){
-                        var removeItem = document.getElementById(`itemDiv${cart[i].id}`);
+                        let removeItem = document.getElementById(`itemDiv${cart[i].id}`);
                         removeItem.innerHTML = '';
 
                         return
@@ -133,7 +133,7 @@ const Cart = () => {
                     
                         setPrice([ totalPrice - precioResta ]);
                         if(cart[i].qty === 0){
-                            var removeItem = document.getElementById(`itemDiv${cart[i].id}`);
+                            let removeItem = document.getElementById(`itemDiv${cart[i].id}`);
                             removeItem.innerHTML = '';
                         }
                         precioTotalSuma()
@@ -171,7 +171,7 @@ const Cart = () => {
     return (
         <div className={classes.root} container style={{ padding: 20 }} class ="text-color ">
             
-            <Typography variant="h4" color="primary" align="center" >
+            <Typography variant="h5" color="primary" align="center" style={{ paddingTop: 20, fontWeight: 300, fontSize: 20 }}>
                 Carrito
             </Typography>
             <br/><br/>

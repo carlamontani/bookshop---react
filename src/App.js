@@ -119,7 +119,7 @@ const App = () => {
                       <Switch>            
                       <Route exact path="/">
                         <div style={{ padding: 20 }} > 
-                        <Typography variant="h4" color="primary" align="center" >
+                        <Typography variant="h5" color="primary" align="center" style={{ paddingTop: 20, fontWeight: 300, fontSize: 20 }}>
                             Novedades
                         </Typography>
                           <Grid

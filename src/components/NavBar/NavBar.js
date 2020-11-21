@@ -5,19 +5,15 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Badge from '@material-ui/core/Badge';
 
-import NotificationsIcon from '@material-ui/icons/Notifications';
 
 
 import LocalMallIcon from '@material-ui/icons/LocalMall';
-import PersonIcon from '@material-ui/icons/Person';
-import SearchIcon from '@material-ui/icons/Search';
 
 import { CartItemsContext } from '../../context/cartItemsContext';
 import { CartContext } from '../../context/cartContext';
